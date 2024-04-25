@@ -1,0 +1,27 @@
+const { format } = require('date-fns');
+const { v4: uuid } = require('uuid');
+
+// common core modules
+const fs = require('fs');
+const fsPromises = require('fs').promises;
+const path = require('path');
+
+const logEvents = async (msg) => {
+	const datetime = `${format(new Date(), 'dd/MM/yyyy@HH:mm:ss')}`;
+	const logItem = `${datetime}\t${uuid()}\t${msg}\n`;
+	try {
+		const folderPath = path.join(__dirname, 'logs');
+		if (!fs.existsSync(folderPath)) {
+			await fsPromises.mkdir(folderPath);
+		}
+
+		await fsPromises.appendFile(
+			path.join(__dirname, 'logs', 'eventLog.txt'),
+			logItem
+		);
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+module.exports = { logEvents };

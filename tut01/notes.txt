@@ -1,0 +1,11 @@
+Node.js is a JavaScript runtime, which facilitates the execution of JavaScript code outside of the browser. This means that Node can be ran on a server rather than the browser. (Frontend and backend).
+
+The console for Node is the termina window in your IDE.
+
+We have access to an object called 'global' instead of 'window'. This has far less properties than the window object, but it has some of the same properties as the window object.
+
+Node also has other commong core modules the we can use, that relate to the operating and file system.
+
+Vanilla Node.js uses CommonJS modules instead of ES6 modules. ES6 module syntax can be used by adding { "type": "module" } in the nearest package.json.
+
+Node is missing some JavaScript API's such as fetch

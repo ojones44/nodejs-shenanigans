@@ -1,2 +1,0 @@
-25/04/2024@20:56:51	e0f343f5-c871-4154-836a-d63913bb58bc	C:\Users\Oliver\Documents\My Codebase\node\tut04\views\index.html | GET
-25/04/2024@20:56:51	a3364969-c4f0-4472-b253-6b46804a4d48	C:\Users\Oliver\Documents\My Codebase\node\tut04\css\index.css | GET

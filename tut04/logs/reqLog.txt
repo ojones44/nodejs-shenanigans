@@ -1,2 +1,8 @@
 26/04/2024 @ 16:08:15	0f10e783-5b99-46dd-a65e-36a6394a76c5	/	GET
 26/04/2024 @ 16:08:15	be5e6e5b-0d03-4d5b-8ac4-03297b520db0	/css/index.css	GET
+28/04/2024 @ 15:20:00	cf1d1e2f-ed21-452d-84d1-e3bcf7cd5bc5	/	GET
+28/04/2024 @ 15:20:00	201253b6-de26-4b2c-b043-67ed9dddc675	/css/index.css	GET
+28/04/2024 @ 15:21:12	42b0a0ae-ab10-4d48-bde4-3d0125ad0434	/	GET
+28/04/2024 @ 15:24:59	cdab77fa-7fd0-48fe-91e3-a857d042697b	/new-page.html	GET
+28/04/2024 @ 15:24:59	8ed41c1b-d66b-4580-8347-3ba97ef3acf7	/css/index.css	GET
+28/04/2024 @ 15:24:59	7ee6631d-11c4-4425-bec8-3042b4efef02	/img/node.png	GET

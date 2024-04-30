@@ -12,7 +12,7 @@ exports.findAll = () => {
 
 exports.findById = (id) => {
 	return new Promise((resolve, _reject) => {
-		resolve(products.find((product) => product.id === parseInt(id)));
+		resolve(products.find((p) => p.id === id));
 	});
 };
 
@@ -24,5 +24,26 @@ exports.create = async (newProduct) => {
 
 	return new Promise((resolve, _reject) => {
 		resolve(newProductWithId);
+	});
+};
+
+exports.update = async (id, product) => {
+	const i = products.findIndex((p) => p.id === id);
+	const updatedProduct = { id, ...product };
+	products[i] = updatedProduct;
+
+	writeDataToFile('./data/products.json', products);
+
+	return new Promise((resolve, _reject) => {
+		resolve(updatedProduct);
+	});
+};
+
+exports.remove = async (id) => {
+	const newProducts = products.filter((p) => p.id !== id);
+	writeDataToFile('./data/products.json', newProducts);
+
+	return new Promise((resolve, _reject) => {
+		resolve();
 	});
 };

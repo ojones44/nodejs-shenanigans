@@ -1,0 +1,6 @@
+03/05/2024 @ 12:25:38	1d6395a0-cfab-4d17-a246-26066a5d72ab	GET	undefined	/employees
+03/05/2024 @ 12:26:49	4e121026-d4ee-4bdd-8d06-1c626c0e94e5	POST	undefined	/employees
+03/05/2024 @ 12:27:02	2289db6b-1603-49bb-ba8c-59fcfefa9a30	PUT	undefined	/employees
+03/05/2024 @ 12:27:23	0fd79581-5d34-4543-bfe5-fefeef7fd51a	DELETE	undefined	/employees
+03/05/2024 @ 12:27:34	d766cb72-b2c4-43d8-8b52-b49b35888bb7	DELETE	undefined	/employees/12345
+03/05/2024 @ 12:27:40	152c523d-e62b-4f86-bb4d-089efa7531fd	GET	undefined	/employees/12345

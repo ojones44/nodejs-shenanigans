@@ -5,8 +5,11 @@ const path = require('path');
 // middleware imports
 const cors = require('cors');
 const { logger } = require('./middleware/logEvents');
-const { corsOptions } = require('./cors/options');
+const { corsOptions } = require('./config/corsOptions');
 const { errorHandler } = require('./middleware/errorHandler');
+
+// creat port variable
+const PORT = process.env.PORT || 5000;
 
 // initialize express
 const app = express();
@@ -31,10 +34,6 @@ app.use('/employees', require('./routes/api/employees'));
 
 // catch all
 app.all('/*', (req, res) => {
-	// this will still send a 200 response instead of a 404 because
-	// technically express will successfully find and serve the 404.html file
-
-	// we need to explicitly specify by chaining
 	res.status(404);
 	// looks at the req headers to see what content type is accepted
 	if (req.accepts('html')) {
@@ -50,8 +49,7 @@ app.all('/*', (req, res) => {
 // catches any thrown Errors and runs the callback
 app.use(errorHandler);
 
-// create port variable and listen for requests
-const PORT = process.env.PORT || 5000;
+// listen for requests
 app.listen(PORT, () => {
 	console.log(`CORS enabled server running on port ${PORT}`);
 });

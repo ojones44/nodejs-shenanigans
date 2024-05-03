@@ -11,14 +11,13 @@ const logEvents = async (msg, fileName) => {
 	const logItem = `${datetime}\t${uuid()}\t${msg}\n`;
 	try {
 		const folderPath = path.join(__dirname, '..', 'logs');
+		const filePath = `${folderPath}/${fileName}`;
+
 		if (!fs.existsSync(folderPath)) {
 			await fsPromises.mkdir(folderPath);
 		}
 
-		await fsPromises.appendFile(
-			path.join(__dirname, 'logs', fileName),
-			logItem
-		);
+		await fsPromises.appendFile(filePath, logItem);
 	} catch (error) {
 		console.error(error);
 	}

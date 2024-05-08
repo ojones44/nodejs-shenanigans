@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const { verifyJWT } = require('../../middleware/verifyJWT');
 
 // controllers
 const {
@@ -13,7 +14,7 @@ const {
 
 router
 	.route('/')
-	.get(getAllEmployees)
+	.get(verifyJWT, getAllEmployees)
 	.post(createNewEmployee)
 	.put(updateEmployee)
 	.delete(deleteEmployee);

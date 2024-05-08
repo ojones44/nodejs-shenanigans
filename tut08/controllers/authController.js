@@ -1,11 +1,13 @@
+const fsPromises = require('fs').promises;
+const path = require('path');
+const { comparePassword, generateToken } = require('../utils/helpers');
+
 const usersDB = {
 	users: require('../model/users.json'),
 	setUsers: function (data) {
 		this.users = data;
 	},
 };
-
-const { comparePassword } = require('../utils/helpers');
 
 exports.auth = async (req, res) => {
 	try {
@@ -38,7 +40,36 @@ exports.auth = async (req, res) => {
 			});
 		}
 
-		res.status(200).json({ message: `${username} logged in successfully.` });
+		// generate tokens after all other conditionals passed
+		const accessToken = generateToken(storedUser.username, 'access');
+		const refreshToken = generateToken(storedUser.username, 'refresh');
+
+		// grabbing all other users to spread into updated array
+		const everyoneElse = usersDB.users.filter(
+			(person) => person.username !== storedUser.username
+		);
+
+		// adding refresh token to current user
+		const currentUser = { ...storedUser, refreshToken };
+
+		// update array
+		usersDB.setUsers([...everyoneElse, currentUser]);
+
+		// write the json file with new array data
+		await fsPromises.writeFile(
+			path.join(__dirname, '..', 'model', 'users.json'),
+			JSON.stringify(usersDB.users)
+		);
+
+		// store a http only cookie with refresh token (prevent any XSS attacks)
+		// not 100% secure, but http only means it is not available to JS
+		res.cookie('jwt', refreshToken, {
+			httpOnly: true,
+			maxAge: 24 * 60 * 60 * 1000, // one day (milliseconds)
+		});
+		res
+			.status(200)
+			.json({ message: `${username} logged in successfully.`, accessToken });
 	} catch (error) {
 		res.status(500).json({ message: `Server error: ${error.message}` });
 	}

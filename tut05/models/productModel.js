@@ -18,9 +18,9 @@ exports.findById = (id) => {
 
 exports.create = async (newProduct) => {
 	const newProductWithId = { id: uuid(), ...newProduct };
-	products.push(newProductWithId);
+	const newProducts = { ...products, newProductWithId };
 
-	writeDataToFile('./data/products.json', products);
+	writeDataToFile('./data/products.json', newProducts);
 
 	return new Promise((resolve, _reject) => {
 		resolve(newProductWithId);
@@ -30,9 +30,11 @@ exports.create = async (newProduct) => {
 exports.update = async (id, product) => {
 	const i = products.findIndex((p) => p.id === id);
 	const updatedProduct = { id, ...product };
-	products[i] = updatedProduct;
 
-	writeDataToFile('./data/products.json', products);
+	const filtered = products.filter((p) => p.id === id);
+	const newProducts = { ...filtered, updatedProduct };
+
+	writeDataToFile('./data/products.json', newProducts);
 
 	return new Promise((resolve, _reject) => {
 		resolve(updatedProduct);

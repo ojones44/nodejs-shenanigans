@@ -1,2 +1,8 @@
 03/05/2024 @ 10:47:56	b3b50ed2-2982-4951-8a11-27fedb3cfd42	Error: Not allowed by CORS
 03/05/2024 @ 13:40:21	10b74f61-8ec5-4945-a9e5-528f6e5efb54	SyntaxError: Expected double-quoted property name in JSON at position 54
+08/05/2024 @ 19:45:24	bd75dc98-68fe-4eee-af23-e2acbd8f05ca	TokenExpiredError: jwt expired
+08/05/2024 @ 19:49:22	e6768122-1102-48aa-b88f-2fa8fbe706a7	Error: Cannot set headers after they are sent to the client
+08/05/2024 @ 19:49:52	e21343ea-521c-4396-917d-a5adab3df5ca	Error: Cannot set headers after they are sent to the client
+08/05/2024 @ 19:50:25	d59b2c59-9f8a-49e3-bd42-e183ac690e76	Error: Cannot set headers after they are sent to the client
+08/05/2024 @ 19:50:34	52660b5e-70f3-4603-84a1-e37013d195bf	Error: Cannot set headers after they are sent to the client
+08/05/2024 @ 19:50:50	90e8e5e3-27f2-4e9c-b65f-86ae92f30794	Error: Cannot set headers after they are sent to the client

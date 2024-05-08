@@ -1,6 +1,9 @@
+//TODO refresh access token not working
+
 // module imports
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 // middleware imports
 const cors = require('cors');
@@ -20,16 +23,20 @@ app.use(logger);
 // cross origin resource sharing
 app.use(cors(corsOptions));
 
-// built-in middleware
+// third party middleware
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, '/public')));
+
+// middleware for cookies
+app.use(cookieParser());
 
 // file routes
 app.use('/', require('./routes/root'));
 
 // api routes
-app.use('/api/employees', require('./routes/api/employees'));
+app.use('/refresh', require('./routes/refresh'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/employees', require('./routes/api/employees'));
 
 // catches any thrown Errors and runs the callback
 app.use(errorHandler);

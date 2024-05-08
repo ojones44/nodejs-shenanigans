@@ -1,1 +1,20 @@
-[{"id":"1","name":"SkullCandy Ear Buds","description":"Wireless bluetooth ear bud headphones","price":35},{"id":"2","name":"MacBook Air 13\" M2 Chip","description":"MacBook Air 13\" laptop (2020 model). Super top secret M2 chip. The Lamborghini Aventador of laptops","price":850},{"id":"3","name":"Vissles Mechanical Keyboard","description":"Vissles V2 keyboard with red switch keys for a soft tactile experience","price":80}]
+[
+	{
+		"id": "1",
+		"name": "SkullCandy Ear Buds",
+		"description": "Wireless bluetooth ear bud headphones",
+		"price": 35
+	},
+	{
+		"id": "2",
+		"name": "MacBook Air 13\" M2 Chip",
+		"description": "MacBook Air 13\" laptop (2020 model). Super top secret M2 chip. The Lamborghini Aventador of laptops",
+		"price": 850
+	},
+	{
+		"id": "3",
+		"name": "Vissles Mechanical Keyboard",
+		"description": "Vissles V2 keyboard with red switch keys for a soft tactile experience",
+		"price": 80
+	}
+]

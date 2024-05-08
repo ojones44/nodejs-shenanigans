@@ -33,8 +33,8 @@ essentially: 'Content-Type': application/x-www-form-urlencoded'
 three types of middleware: built-in, custom, third-party
 
 putting this above everything else means it will apply to all routes that come in
-app.use(express.urlencoded({ extended: false }));
 */
+app.use(express.urlencoded({ extended: false }));
 
 //built in middleware for json
 app.use(express.json());

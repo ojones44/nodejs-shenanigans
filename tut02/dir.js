@@ -2,26 +2,26 @@ const fs = require('fs');
 
 const dirs = ['new', 'test', 'db'];
 
-dirs.forEach((dir) => {
-	const path = `./${dir}`;
+// dirs.forEach((dir) => {
+// 	const path = `./${dir}`;
 
-	if (!fs.existsSync(path)) {
-		fs.mkdir(`./${dir}`, (err) => {
-			if (err) throw err;
-			console.log('New directory created');
-		});
-	} else {
-		console.log(`${path} already exists`);
-	}
-});
+// 	if (!fs.existsSync(path)) {
+// 		fs.mkdir(path, (err) => {
+// 			if (err) throw err;
+// 			console.log('New directory created');
+// 		});
+// 	} else {
+// 		console.log(`${path} already exists`);
+// 	}
+// });
 
 dirs.forEach((dir) => {
 	const path = `./${dir}`;
 
 	if (fs.existsSync(path)) {
-		fs.rmdir(`./${dir}`, (err) => {
+		fs.rmdir(path, (err) => {
 			if (err) throw err;
-			console.log(`./${dir} now removed`);
+			console.log(`${path} now removed`);
 		});
 	} else {
 		console.log(`${path} doesn't exist`);

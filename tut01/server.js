@@ -2,7 +2,7 @@ const os = require('os');
 const path = require('path');
 const { add, subtract, multiply, divide } = require('./math');
 
-console.log('Hello Node.js');
+// console.log('Hello Node.js');
 
 // console.log(global);
 
@@ -21,4 +21,4 @@ console.log('Hello Node.js');
 
 // console.log(path.parse(__filename));
 
-console.log(add(2, 3));
+// console.log(add(2, 3));

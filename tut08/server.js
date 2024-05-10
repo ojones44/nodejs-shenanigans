@@ -8,6 +8,7 @@ const cors = require('cors');
 const { logger } = require('./middleware/logEvents');
 const { corsOptions } = require('./config/corsOptions');
 const { errorHandler } = require('./middleware/errorHandler');
+const { credentials } = require('./middleware/credentials');
 
 // creat port variable
 const PORT = process.env.PORT || 5000;
@@ -17,6 +18,10 @@ const app = express();
 
 // custom middleware
 app.use(logger);
+
+// handle credentials check - must be before CORS
+// and fetch cookies credentials requirement
+app.use(credentials);
 
 // cross origin resource sharing
 app.use(cors(corsOptions));
@@ -33,6 +38,7 @@ app.use('/', require('./routes/root'));
 
 // refresh token
 app.use('/refresh', require('./routes/refresh'));
+app.use('/logout', require('./routes/logout'));
 
 // api routes
 app.use('/api/auth', require('./routes/api/auth'));

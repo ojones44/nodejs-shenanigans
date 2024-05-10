@@ -59,6 +59,8 @@ exports.auth = async (req, res) => {
 		// not 100% secure, but http only means it is not available to JS
 		res.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
+			sameSite: 'None',
+			secure: true,
 			maxAge: 24 * 60 * 60 * 1000, // one day (milliseconds)
 		});
 		res.status(200).json({

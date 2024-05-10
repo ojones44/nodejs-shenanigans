@@ -1,23 +1,16 @@
 const { v4: uuid } = require('uuid');
-
-// simulate connection to db
-const data = {
-	employees: require('../model/employees.json'),
-	setEmployees: function (data) {
-		this.employees = data;
-	},
-};
+const { employeeDB } = require('../model/Employee');
 
 //!----------------------------------------------------------------!//
 
 const getAllEmployees = (req, res) => {
-	res.json(data.employees);
+	res.json(employeeDB.employees);
 };
 
 //!----------------------------------------------------------------!//
 
 const getEmployee = (req, res) => {
-	const employee = data.employees.find(
+	const employee = employeeDB.employees.find(
 		(employee) => employee.id === req.params.id
 	);
 
@@ -43,14 +36,14 @@ const createNewEmployee = (req, res) => {
 		return res.status(400).json({ message: 'Name and role are required' });
 	}
 
-	data.setEmployees([...data.employees, newEmployee]);
-	res.status(201).json({ updatedEmployees: data.employees });
+	employeeDB.setEmployees([...employeeDB.employees, newEmployee]);
+	res.status(201).json({ updatedEmployees: employeeDB.employees });
 };
 
 //!----------------------------------------------------------------!//
 
 const updateEmployee = (req, res) => {
-	const employee = data.employees.find(
+	const employee = employeeDB.employees.find(
 		(employee) => employee.id === req.params.id
 	);
 
@@ -66,10 +59,10 @@ const updateEmployee = (req, res) => {
 		role: req.body.role ? req.body.role : employee.role,
 	};
 
-	const filtered = data.employees.filter(
+	const filtered = employeeDB.employees.filter(
 		(storedData) => storedData.id !== req.params.id
 	);
-	data.setEmployees([...filtered, updatedEmployee]);
+	employeeDB.setEmployees([...filtered, updatedEmployee]);
 
 	res.status(200).json({ updated: updatedEmployee });
 };
@@ -77,7 +70,7 @@ const updateEmployee = (req, res) => {
 //!----------------------------------------------------------------!//
 
 const deleteEmployee = (req, res) => {
-	const employee = data.employees.find(
+	const employee = employeeDB.employees.find(
 		(employee) => employee.id === req.params.id
 	);
 
@@ -87,11 +80,11 @@ const deleteEmployee = (req, res) => {
 		});
 	}
 
-	const filteredEmployees = data.employees.filter(
+	const filteredEmployees = employeeDB.employees.filter(
 		(employee) => employee.id !== req.params.id
 	);
 
-	data.setEmployees([...filteredEmployees]);
+	employeeDB.setEmployees([...filteredEmployees]);
 	return res
 		.status(200)
 		.json({ message: `Employee id: ${req.params.id} deleted` });

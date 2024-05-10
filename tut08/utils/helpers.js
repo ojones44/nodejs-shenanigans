@@ -19,27 +19,11 @@ exports.generateToken = (username, secretType) => {
 	});
 };
 
-exports.verifyToken = (token, attribute, secretType, req, res, next) => {
-	return jwt.verify(token, secrets[secretType].secret, (err, decoded) => {
-		if (err) return res.status(403).json({ JWT_message: 'Expired token' });
-		req[attribute] = decoded[attribute];
-		next();
-	});
-};
-
-exports.getRefreshToken = (token, secretType, attribute, data) => {
-	return jwt.verify(token, secrets[secretType].secret, (err, decoded) => {
-		if (err || data[attribute] !== decoded[attribute])
-			return res
-				.status(403)
-				.json({ JWT_message: 'Could not verify refresh token' });
-		const accessToken = jwt.sign(
-			{ [attribute]: decoded[attribute] },
-			'access',
-			{
-				expiresIn: secrets.access.expiresIn,
-			}
-		);
-		return accessToken;
-	});
+exports.verifyToken = (token, attribute, secretType) => {
+	try {
+		const decoded = jwt.verify(token, secrets[secretType].secret);
+		return { payload: decoded[attribute], expired: false };
+	} catch (error) {
+		return { payload: null, expired: error.message.includes('jwt expired') };
+	}
 };

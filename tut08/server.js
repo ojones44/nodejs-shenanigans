@@ -1,5 +1,3 @@
-//TODO refresh access token not working
-
 // module imports
 const express = require('express');
 const path = require('path');
@@ -33,8 +31,10 @@ app.use(cookieParser());
 // file routes
 app.use('/', require('./routes/root'));
 
-// api routes
+// refresh token
 app.use('/refresh', require('./routes/refresh'));
+
+// api routes
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/employees', require('./routes/api/employees'));
 

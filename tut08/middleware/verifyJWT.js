@@ -6,5 +6,18 @@ exports.verifyJWT = (req, res, next) => {
 	if (!authHeader) return res.sendStatus(401);
 
 	const token = authHeader.split(' ')[1];
-	verifyToken(token, 'username', 'access', req, res, next);
+	const { payload, expired } = verifyToken(token, 'username', 'access');
+
+	if (payload && !expired) {
+		req.username = payload;
+	} else {
+		return res
+			.status(403)
+			.json({
+				JWT_message: 'Could not verify token',
+				jwt: { payload, expired },
+			});
+	}
+
+	next();
 };

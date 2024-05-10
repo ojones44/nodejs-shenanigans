@@ -1,13 +1,7 @@
 const fsPromises = require('fs').promises;
 const path = require('path');
 const { comparePassword, generateToken } = require('../utils/helpers');
-
-const usersDB = {
-	users: require('../model/users.json'),
-	setUsers: function (data) {
-		this.users = data;
-	},
-};
+const { usersDB } = require('../model/User');
 
 exports.auth = async (req, res) => {
 	try {
@@ -63,13 +57,14 @@ exports.auth = async (req, res) => {
 
 		// store a http only cookie with refresh token (prevent any XSS attacks)
 		// not 100% secure, but http only means it is not available to JS
-		res.cookie('jwt', refreshToken, {
+		res.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
 			maxAge: 24 * 60 * 60 * 1000, // one day (milliseconds)
 		});
-		res
-			.status(200)
-			.json({ message: `${username} logged in successfully.`, accessToken });
+		res.status(200).json({
+			message: `${username} logged in successfully.`,
+			payload: accessToken,
+		});
 	} catch (error) {
 		res.status(500).json({ message: `Server error: ${error.message}` });
 	}

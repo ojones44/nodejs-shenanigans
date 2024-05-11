@@ -1,0 +1,57 @@
+// module imports
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv').config();
+
+// middleware imports
+const cors = require('cors');
+const { logger } = require('./middleware/logEvents');
+const { corsOptions } = require('./config/corsOptions');
+const { errorHandler } = require('./middleware/errorHandler');
+const { credentials } = require('./middleware/credentials');
+const { verifyJWT } = require('./middleware/verifyJWT');
+
+// creat port variable
+const PORT = process.env.PORT || 5000;
+
+// initialize express
+const app = express();
+
+// custom middleware
+app.use(logger);
+
+// handle credentials check - must be before CORS
+// and fetch cookies credentials requirement
+// app.use(credentials);
+
+// cross origin resource sharing
+app.use(cors(corsOptions));
+
+// third party middleware
+app.use(express.json());
+app.use('/', express.static(path.join(__dirname, '/public')));
+
+// middleware for cookies
+app.use(cookieParser());
+
+// file routes
+app.use('/', require('./routes/root'));
+
+// refresh token
+app.use('/refresh', require('./routes/refresh'));
+app.use('/logout', require('./routes/logout'));
+
+// api routes
+app.use('/api/auth', require('./routes/api/auth'));
+
+app.use(verifyJWT);
+app.use('/api/employees', require('./routes/api/employees'));
+
+// catches any thrown Errors and runs the callback
+app.use(errorHandler);
+
+// listen for requests
+app.listen(PORT, () => {
+	console.log(`CORS enabled server running on port ${PORT}`);
+});

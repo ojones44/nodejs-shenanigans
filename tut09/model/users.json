@@ -1,0 +1,18 @@
+[
+	{
+		"username": "ojones44",
+		"roles": { "user": 2001, "editor": 1984, "admin": 5150 },
+		"password": "$2b$10$YFPWQUB6YBsrG/QJkB/0Oe30bvdoe.AOMKgeGbgaRN7C9Fe8FGtL2"
+	},
+	{
+		"username": "john2",
+		"roles": { "user": 2001 },
+		"password": "$2b$10$p8JOCmZ0Pd2tBpa5h02WO.nogS83E1icj/r2sbkEOEVfZQSmGZVOK"
+	},
+	{
+		"username": "steve123",
+		"roles": { "user": 2001, "editor": 1984 },
+		"password": "$2b$10$/TjaJ/ahf4ONh6q/aSTKJ.cdNsL6SZPWHlE3PPyXOrCqRZxgG/LbK",
+		"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6eyJ1c2VybmFtZSI6InN0ZXZlMTIzIn0sImlhdCI6MTcxNTM3MjQ5OSwiZXhwIjoxNzE1NDU4ODk5fQ.BjMBaohz0Ozu2lrjePnwBKaxHRjSNXH1emt5i2XX6Vw"
+	}
+]
